@@ -1,0 +1,66 @@
+chains:
+  - chain_id: ethereum
+    name: Ethereum
+    chain_id_int: 1
+    rpc_urls:
+      - "${ETHEREUM_RPC}"
+    explorer_url: https://etherscan.io
+    explorer_api_key_env: ETHERSCAN_API_KEY
+    native_symbol: ETH
+    is_evm: true
+    block_time_seconds: 12.0
+
+  - chain_id: bsc
+    name: BNB Smart Chain
+    chain_id_int: 56
+    rpc_urls:
+      - "${BSC_RPC}"
+    explorer_url: https://bscscan.com
+    explorer_api_key_env: BSCSCAN_API_KEY
+    native_symbol: BNB
+    is_evm: true
+    block_time_seconds: 3.0
+
+  - chain_id: polygon
+    name: Polygon
+    chain_id_int: 137
+    rpc_urls:
+      - "${POLYGON_RPC}"
+    explorer_url: https://polygonscan.com
+    explorer_api_key_env: POLYGONSCAN_API_KEY
+    native_symbol: MATIC
+    is_evm: true
+    block_time_seconds: 2.0
+
+  - chain_id: arbitrum
+    name: Arbitrum One
+    chain_id_int: 42161
+    rpc_urls:
+      - "${ARBITRUM_RPC}"
+    explorer_url: https://arbiscan.io
+    explorer_api_key_env: ARBISCAN_API_KEY
+    native_symbol: ETH
+    is_evm: true
+    block_time_seconds: 0.25
+
+  - chain_id: avalanche
+    name: Avalanche C-Chain
+    chain_id_int: 43114
+    rpc_urls:
+      - "${AVALANCHE_RPC}"
+    explorer_url: https://snowtrace.io
+    explorer_api_key_env: SNOWTRACE_API_KEY
+    native_symbol: AVAX
+    is_evm: true
+    block_time_seconds: 2.0
+
+  - chain_id: solana
+    name: Solana
+    chain_id_int: 101
+    rpc_urls:
+      - "${SOLANA_RPC}"
+    explorer_url: https://solscan.io
+    explorer_api_key_env: SOLSCAN_API_KEY
+    native_symbol: SOL
+    is_evm: false
+    block_time_seconds: 0.4

@@ -1,0 +1,30 @@
+rho: 0.81
+threshold: 0.04
+time_window_days: 30
+max_hops: 11
+
+value_conservation:
+  enabled: true
+  enforce_fragmentation_check: true
+  fragmentation_tolerance: 0.02
+
+mixer_detection:
+  enabled: true
+  known_mixers:
+    - "0xd90e2f925DA726b50C4Ed8D0Fb90Ad053324F31b"
+    - "0x12D66f87A04A9E220743712cE6d9bB1B5616B8Fc"
+    - "0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936"
+    - "0x910Cbd523D972eb0a6f4cAe4618aD62622b39DbF"
+  termination_score: 0.0
+
+edge_weights:
+  cross_chain_bridge: 0.90
+  intra_chain_transfer: 1.0
+  dex_swap: 0.80
+
+soundness:
+  beta_hat:
+  finite_sample_epsilon:
+  batch_window_blocks: 20
+
+seed: 42

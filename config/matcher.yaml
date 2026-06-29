@@ -1,0 +1,22 @@
+embedding_dim: 128
+num_layers: 4
+num_heads: 4
+ff_dim: 512
+dropout: 0.1
+activation: gelu
+max_seq_len: 512
+
+training:
+  batch_size: 256
+  epochs: 50
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  warmup_steps: 1000
+  gradient_clip_norm: 1.0
+  pos_neg_ratio: 8
+  hard_negative_ratio: 0.3
+
+evaluation:
+  eval_ratio: 10000
+  calibration_method: platt
+  score_threshold: 0.5

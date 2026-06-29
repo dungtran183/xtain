@@ -1,0 +1,20 @@
+num_bootstrap_resamples: 1000
+ci_alpha: 0.05
+wilcoxon_alpha: 0.05
+
+metrics:
+  hop_recall:
+    description: "Fraction of true hops recovered"
+  precision:
+    description: "Fraction of predicted hops that are correct"
+  fpr:
+    description: "False positive rate on benign set"
+  runtime_p95_ms:
+    description: "95th percentile runtime"
+
+temporal_split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+
+seed: 42

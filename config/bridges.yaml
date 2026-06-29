@@ -1,0 +1,81 @@
+bridges:
+  - bridge_id: wormhole
+    name: Wormhole
+    mode: lock_mint
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche, solana]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche, solana]
+    fee_bound_pct: 0.01
+    source_events: [LogMessagePublished, Send]
+    dest_events: [TransferRedeemed, Receive]
+
+  - bridge_id: layerzero
+    name: LayerZero
+    mode: lock_mint
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.01
+    source_events: [PacketSent]
+    dest_events: [PacketReceived]
+
+  - bridge_id: multichain
+    name: Multichain
+    mode: lock_mint
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.01
+    source_events: [LogAnySwapIn, SwapRemote]
+    dest_events: [LogAnySwapOut, SwapRemote]
+
+  - bridge_id: stargate
+    name: Stargate
+    mode: pool
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.05
+    source_events: [TokenMintAndSwap, Send]
+    dest_events: [TokenRedeem, Receive]
+
+  - bridge_id: across
+    name: Across
+    mode: intent
+    source_chains: [ethereum, polygon, arbitrum]
+    dest_chains: [ethereum, polygon, arbitrum]
+    fee_bound_pct: 0.08
+    source_events: [FundsDeposited]
+    dest_events: [FilledRelay]
+
+  - bridge_id: hop
+    name: Hop
+    mode: pool
+    source_chains: [ethereum, polygon, arbitrum]
+    dest_chains: [ethereum, polygon, arbitrum]
+    fee_bound_pct: 0.05
+    source_events: [TransferSent]
+    dest_events: [TransferReceived]
+
+  - bridge_id: cbridge
+    name: cBridge
+    mode: pool
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.05
+    source_events: [Send]
+    dest_events: [Receive]
+
+  - bridge_id: synapse
+    name: Synapse
+    mode: pool
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.05
+    source_events: [TokenSend, Deposit]
+    dest_events: [TokenReceive, Withdraw]
+
+  - bridge_id: hyperlane
+    name: Hyperlane
+    mode: lock_mint
+    source_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    dest_chains: [ethereum, bsc, polygon, arbitrum, avalanche]
+    fee_bound_pct: 0.01
+    source_events: [Dispatch, Process]
+    dest_events: [Process, Dispatch]

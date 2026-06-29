@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crosstaint"
+version = "1.0.0"
+description = "Probabilistically sound multi-hop cross-chain taint tracking for bridge-exploit forensics"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+keywords = ["blockchain", "cross-chain", "taint-analysis", "forensics"]
+dependencies = [
+  "numpy>=1.24.0",
+  "pandas>=2.0.0",
+  "pyarrow>=14.0.0",
+  "pyyaml>=6.0",
+  "scipy>=1.10.0",
+  "torch>=2.1.0",
+  "tqdm>=4.65.0",
+]
+
+[project.scripts]
+crosstaint = "crosstaint.experiments.run:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

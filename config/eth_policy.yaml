@@ -1,0 +1,9 @@
+chain_id: 1
+chain_id_int: 1
+network: mainnet
+archive_mode: true
+tracing_enabled: true
+block_batch_size: 1000
+retry_attempts: 3
+retry_delay_seconds: 1
+rate_limit_rpm: 100
