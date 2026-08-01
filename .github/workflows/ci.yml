@@ -1,0 +1,75 @@
+name: artifact-ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lightweight-validation:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install lightweight validation dependencies
+        run: >-
+          python -m pip install
+          "pyyaml>=6.0"
+          "jsonschema[format]>=4.21,<5"
+          "build>=1,<2"
+      - name: Validate artifact structure
+        run: PYTHONPATH=src python scripts/validate_artifact.py
+      - name: Validate JSON Schema instances
+        run: >-
+          PYTHONPATH=src python -m unittest discover
+          -s tests -p "test_artifact.py" -v
+      - name: Run deterministic tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: Compile Python sources
+        run: python -m compileall -q src scripts tests
+      - name: Build wheel
+        run: python -m build --wheel
+      - name: Verify installed defaults and deterministic CLI smoke
+        run: |
+          python -m pip install --no-deps --force-reinstall dist/crosstaint-1.1.0-py3-none-any.whl
+          cd /tmp
+          python -c "from crosstaint.config import Config; cfg = Config.load(); assert len(cfg.chains) == 6 and len(cfg.bridges) == 9"
+          crosstaint-artifact --root "${{ github.workspace }}" --smoke
+
+  citation-metadata-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate CITATION.cff against the CFF schema
+        uses: citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: "--validate"
+
+  full-runtime-cli-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install complete runtime
+        run: python -m pip install .
+      - name: Exercise primary deterministic benchmark CLI
+        run: >-
+          crosstaint
+          --local-benchmark
+          --num-benign 4
+          --num-exploit 1
+          --num-runs 1
+          --seed 42
+          --output-dir /tmp/crosstaint-smoke

@@ -1,13 +1,22 @@
-"""Edge weights for taint propagation."""
+"""Edge weights for taint propagation.
+
+Modified in derived release v1.1.0 so fixed-weight propagation can be checked
+without importing the optional trainable PyTorch path.
+"""
 
 from __future__ import annotations
 
 from typing import Mapping
 
-import torch
-import torch.nn as nn
-
 from crosstaint.types import EdgeType, IREdge
+
+
+try:
+    import torch
+    import torch.nn as nn
+except ImportError:  # Fixed-weight propagation does not require PyTorch.
+    torch = None
+    nn = None
 
 
 _EDGE_TYPE_ALIASES: dict[str, str] = {
@@ -37,6 +46,10 @@ class EdgeWeightLearner:
                 self._weights[edge_type] = float(value)
 
         if trainable:
+            if torch is None or nn is None:
+                raise RuntimeError(
+                    "trainable edge weights require PyTorch; install the full runtime dependencies"
+                )
             self._mlp = nn.Sequential(
                 nn.Linear(1, 8),
                 nn.ReLU(),
@@ -64,6 +77,7 @@ class EdgeWeightLearner:
 
     def get_weight_by_type(self, edge_type: str) -> float:
         if self._mlp is not None and self.trainable:
+            assert torch is not None
             base = self._weights.get(edge_type, 0.9)
             weight = self._mlp(torch.tensor([[base]]))
             return float(weight.item())

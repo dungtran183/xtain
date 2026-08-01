@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/benchmark-manifest.schema.json",
+  "benchmark_name": "CrossTaint synthetic smoke fixture",
+  "version": "1.0",
+  "evidence_scope": "synthetic_oracle",
+  "oracle_metadata": {
+    "description": "Expected path authored solely for deterministic implementation checks",
+    "independent_provenance": false,
+    "generator": "hand-authored synthetic two-hop fixture",
+    "seed": 42
+  },
+  "benign_addresses": [
+    "0x9999999999999999999999999999999999999999"
+  ],
+  "cases": [
+    {
+      "case_id": "synthetic-smoke-001",
+      "name": "Two-hop synthetic bridge path",
+      "origin": {
+        "address": "0x1111111111111111111111111111111111111111",
+        "chain": "ethereum",
+        "value": 1000000
+      },
+      "hops": [
+        {
+          "from_chain": "ethereum",
+          "to_chain": "polygon",
+          "bridge": "wormhole",
+          "address": "0x2222222222222222222222222222222222222222",
+          "value": 995000,
+          "asset": "USDC",
+          "operator": "Lock"
+        },
+        {
+          "from_chain": "polygon",
+          "to_chain": "arbitrum",
+          "bridge": "across",
+          "address": "0x3333333333333333333333333333333333333333",
+          "value": 985000,
+          "asset": "USDC",
+          "operator": "IntentFill"
+        }
+      ]
+    }
+  ]
+}

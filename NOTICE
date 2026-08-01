@@ -1,0 +1,34 @@
+CrossTaint
+
+This distribution is derived from the public fuondai/xtain repository at
+commit 320883a61888ba7a92a6ad738d951a7dcc7ffd23:
+
+    https://github.com/fuondai/xtain/tree/320883a61888ba7a92a6ad738d951a7dcc7ffd23
+
+The following submission-hardening modifications were released on
+2026-08-01 as the derived v1.1.0 release at:
+
+    https://github.com/dungtran183/xtain
+
+- complete Apache License 2.0 and upstream provenance metadata;
+- citation, release-inventory, and project metadata;
+- packaged default configuration and clearer configuration errors;
+- offline artifact validation, benchmark schemas, synthetic smoke data,
+  deterministic tests, and continuous integration;
+- reproducibility documentation and responsible-use clarification; and
+- import-path hardening that does not change scientific algorithms or
+  reported results.
+
+Modified upstream Python files carry a v1.1.0 change notice in their module
+documentation: `__init__.py`, `config.py`, `experiments/__init__.py`,
+`experiments/corpus.py`, and `propagation/weight.py`.
+
+The upstream source and these modifications are distributed under the
+Apache License, Version 2.0. This NOTICE is informational only and does not
+modify the License.
+
+The upstream Zenodo landing metadata labels record 21021751 as CC BY 4.0,
+while the source archive deposited there contains an Apache-2.0 LICENSE. This
+derived repository retains Apache-2.0 as its source-code license; the Zenodo
+landing-page metadata is recorded as provenance and does not replace the
+file-level license.

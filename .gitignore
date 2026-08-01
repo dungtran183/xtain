@@ -1,11 +1,13 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
+.coverage
+.pytest_cache/
 .venv/
 .env
 .env.*
-dist/
 build/
+dist/
 results/
 result/
 artifacts/
@@ -13,6 +15,7 @@ data/
 datasets/
 checkpoints/
 *.pt
+*.pth
 *.ckpt
 *.parquet
 *.csv

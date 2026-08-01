@@ -1,3 +1,9 @@
+"""CrossTaint configuration loading.
+
+Modified in derived release v1.1.0 to package defaults and fail clearly when
+an explicitly selected configuration directory is invalid.
+"""
+
 from __future__ import annotations
 
 import hashlib
@@ -21,6 +27,7 @@ def _candidate_config_dirs() -> list[Path]:
     candidates.extend([
         Path.cwd() / "config",
         Path(__file__).resolve().parents[2] / "config",
+        Path(__file__).resolve().parent / "default_config",
     ])
     return candidates
 
@@ -76,10 +83,18 @@ class Config:
             return cls._instance
 
         cfg = cls()
-        directory = config_dir or _default_config_dir()
+        directory = Path(config_dir) if config_dir is not None else _default_config_dir()
+        if not directory.is_dir():
+            raise FileNotFoundError(f"CrossTaint config directory not found: {directory}")
+
+        yaml_files = sorted(directory.glob("*.yaml"))
+        if not yaml_files:
+            raise FileNotFoundError(
+                f"CrossTaint config directory contains no YAML files: {directory}"
+            )
         cfg._loaded = {}
 
-        for yaml_file in sorted(directory.glob("*.yaml")):
+        for yaml_file in yaml_files:
             with open(yaml_file, "r", encoding="utf-8") as handle:
                 raw = yaml.safe_load(handle)
             if raw is None:

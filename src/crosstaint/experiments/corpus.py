@@ -1,4 +1,8 @@
-"""Benchmark corpus loading and validation."""
+"""Benchmark corpus loading and validation.
+
+Modified in derived release v1.1.0 to defer the optional Parquet dependency
+until a Parquet benign-address file is requested.
+"""
 
 from __future__ import annotations
 
@@ -10,7 +14,6 @@ from pathlib import Path
 from typing import Any
 from uuid import NAMESPACE_URL, uuid5
 
-import pandas as pd
 import yaml
 
 from crosstaint.config import Config
@@ -77,6 +80,8 @@ def load_benchmark_dataset(
         "manifest_file": manifest_path.name,
         "benchmark_name": manifest.get("benchmark_name", ""),
         "version": manifest.get("version", ""),
+        "evidence_scope": manifest.get("evidence_scope", ""),
+        "oracle_metadata": manifest.get("oracle_metadata", {}),
     }
 
     return BenchmarkDataset(
@@ -322,6 +327,12 @@ def _load_benign_address_file(path: Path) -> list[str]:
                 raise ValueError("benign CSV file must contain an address column")
             return [row["address"] for row in reader if row.get("address")]
     if suffix in {".parquet", ".pq"}:
+        try:
+            import pandas as pd
+        except ImportError as exc:
+            raise RuntimeError(
+                "reading Parquet benign-address files requires pandas and pyarrow"
+            ) from exc
         frame = pd.read_parquet(path)
         if "address" not in frame.columns:
             raise ValueError("benign parquet file must contain an address column")

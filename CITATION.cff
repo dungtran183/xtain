@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite this derived v1.1.0 release and retain its upstream lineage. No DOI has been assigned to v1.1.0."
+title: "CrossTaint"
+type: software
+version: 1.1.0
+date-released: 2026-08-01
+authors:
+  - name: "CrossTaint contributors"
+repository-code: "https://github.com/dungtran183/xtain"
+url: "https://github.com/dungtran183/xtain/tree/v1.1.0"
+license: Apache-2.0
+abstract: "Submission-hardened derivative of fuondai/xtain v1.0.0 at commit 320883a61888ba7a92a6ad738d951a7dcc7ffd23."
+references:
+  - type: software
+    title: "CrossTaint"
+    version: 1.0.0
+    date-released: 2026-06-29
+    authors:
+      - name: "CrossTaint contributors"
+    repository-code: "https://github.com/fuondai/xtain"
+    url: "https://github.com/fuondai/xtain/tree/v1.0.0"
+    doi: 10.5281/zenodo.21021751

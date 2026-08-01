@@ -1,0 +1,14 @@
+hidden_dim: 256
+num_layers: 3
+num_heads: 4
+dropout: 0.1
+activation: gelu
+cold_start_threshold: 2
+
+training:
+  batch_size: 128
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 10
+  min_delta: 0.001

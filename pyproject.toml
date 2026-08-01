@@ -4,12 +4,22 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crosstaint"
-version = "1.0.0"
+version = "1.1.0"
 description = "Probabilistically sound multi-hop cross-chain taint tracking for bridge-exploit forensics"
 readme = "README.md"
 license = { text = "Apache-2.0" }
+authors = [{ name = "CrossTaint contributors" }]
 requires-python = ">=3.11"
 keywords = ["blockchain", "cross-chain", "taint-analysis", "forensics"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
 dependencies = [
   "numpy>=1.24.0",
   "pandas>=2.0.0",
@@ -22,6 +32,25 @@ dependencies = [
 
 [project.scripts]
 crosstaint = "crosstaint.experiments.run:main"
+crosstaint-artifact = "crosstaint.artifact:main"
+
+[project.urls]
+Repository = "https://github.com/dungtran183/xtain"
+Release = "https://github.com/dungtran183/xtain/tree/v1.1.0"
+Upstream = "https://github.com/fuondai/xtain"
+Upstream-Release = "https://github.com/fuondai/xtain/tree/v1.0.0"
+Upstream-Archive = "https://doi.org/10.5281/zenodo.21021751"
+Issues = "https://github.com/dungtran183/xtain/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "NOTICE"]
+
+[tool.setuptools.package-data]
+crosstaint = ["default_config/*.yaml"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

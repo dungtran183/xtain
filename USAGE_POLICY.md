@@ -1,5 +1,10 @@
 # CrossTaint Usage Policy
 
+This document provides non-binding responsible-use guidance. It is not part
+of, an addendum to, or a condition of the Apache License 2.0. It does not
+restrict or modify the permissions granted by that license; `LICENSE` controls
+the legal terms for use, reproduction, modification, and distribution.
+
 CrossTaint is forensic decision-support software. It must not be used as the sole basis for asset freezing, sanctions screening, account closure, travel-rule enforcement, or legal attribution.
 
 ## Allowed Uses

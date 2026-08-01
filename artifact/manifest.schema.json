@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CrossTaint release artifact manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact", "lineage", "contents", "entry_points",
+    "required_paths"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": "1.0"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name", "package", "version", "license", "repository", "release",
+        "release_status", "release_date"
+      ],
+      "properties": {
+        "name": {"const": "CrossTaint"},
+        "package": {"const": "crosstaint"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "license": {"const": "Apache-2.0"},
+        "repository": {"type": "string", "format": "uri"},
+        "release": {"type": "string", "format": "uri"},
+        "release_status": {"const": "released"},
+        "release_date": {"const": "2026-08-01"}
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship", "name", "version", "repository", "tag", "commit",
+        "release", "archive_doi", "archive",
+        "archive_landing_metadata_license", "archived_source_license",
+        "release_date"
+      ],
+      "properties": {
+        "relationship": {"const": "derived_from"},
+        "name": {"const": "CrossTaint"},
+        "version": {"const": "1.0.0"},
+        "repository": {"const": "https://github.com/fuondai/xtain"},
+        "tag": {"const": "v1.0.0"},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "release": {"const": "https://github.com/fuondai/xtain/tree/v1.0.0"},
+        "archive_doi": {"const": "10.5281/zenodo.21021751"},
+        "archive": {"const": "https://doi.org/10.5281/zenodo.21021751"},
+        "archive_landing_metadata_license": {"const": "CC-BY-4.0"},
+        "archived_source_license": {"const": "Apache-2.0"},
+        "release_date": {"const": "2026-06-29"}
+      }
+    },
+    "contents": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "boolean"}
+    },
+    "entry_points": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "required_paths": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

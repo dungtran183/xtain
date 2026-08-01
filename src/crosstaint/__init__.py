@@ -1,4 +1,7 @@
-"""CrossTaint: multi-hop cross-chain taint tracking for bridge-exploit forensics."""
+"""CrossTaint: multi-hop cross-chain taint tracking for bridge-exploit forensics.
 
-__version__ = "1.0.0"
+Modified in derived release v1.1.0 to identify the hardened package version.
+"""
+
+__version__ = "1.1.0"
 __license__ = "Apache-2.0"
