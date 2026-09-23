@@ -1,6 +1,6 @@
 # CrossTaint
 
-CrossTaint is an open-source framework for probabilistically bounded,
+CrossTaint is an open-source framework for probabilistically bounded
 multi-hop cross-chain taint tracking in bridge-exploit forensics. The source
 tree implements the bridge intermediate representation, value-conserving
 propagation, bridge-event matching, heterogeneous pseudonym resolution,
@@ -13,19 +13,9 @@ release, published on 1 August 2026.
 
 - Repository: <https://github.com/dungtran183/xtain>
 - v1.1.0 tag: <https://github.com/dungtran183/xtain/tree/v1.1.0>
-- Upstream source: <https://github.com/fuondai/xtain/tree/v1.0.0>
-- Upstream commit: `320883a61888ba7a92a6ad738d951a7dcc7ffd23`
-- Upstream v1.0.0 archive: <https://doi.org/10.5281/zenodo.21021751>
 - Source license: Apache-2.0 (`LICENSE`)
 - Upstream provenance and modification notice: `NOTICE`
 - Machine-readable release inventory: `artifact/manifest.json`
-
-The Zenodo DOI belongs to upstream v1.0.0 and is recorded only as lineage. The
-Zenodo landing metadata labels that deposit as CC BY 4.0, whereas the source
-archive stored in the deposit contains an Apache-2.0 `LICENSE`. This repository
-preserves Apache-2.0 as the source-code license; the landing-page metadata does
-not replace the file-level source license. No DOI has been assigned to the
-derived v1.1.0 release.
 
 The offline validator checks that these identifiers agree with the package
 metadata and that every declared release file is present:
@@ -45,7 +35,7 @@ CrossTaint requires Python 3.11 or newer. A clean editable installation is:
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -e .
+python -m pip install -e.
 ```
 
 The default configuration is installed inside the Python package. Resolution
@@ -134,26 +124,12 @@ event index or graph objects to `InferenceStack.from_config`. The propagation
 result contains ranked suspect entries and a per-case soundness-certificate
 record when calibrated bound parameters are configured.
 
-## Artifact scope
-
-The v1.1.0 release contains source code, public YAML configuration, the
-synthetic generator, benchmark runner, schemas, and a synthetic smoke fixture.
-It does not contain historical incident manifests, benign-user address pools,
-trained checkpoints, indexed graph snapshots, or the paper's result files.
-Those materials must not be inferred from the synthetic fixture or replaced
-with fabricated data. The exact inclusion flags are recorded in
-`artifact/manifest.json`.
-
 ## Citation
 
 Citation metadata is available in `CITATION.cff`. Cite the derived release as:
 
 > CrossTaint contributors. *CrossTaint*, version 1.1.0, derived
 > artifact-hardening release. <https://github.com/dungtran183/xtain/tree/v1.1.0>
-
-No DOI is assigned to v1.1.0. For provenance, its upstream source is
-CrossTaint v1.0.0 at commit `320883a61888ba7a92a6ad738d951a7dcc7ffd23`,
-archived at <https://doi.org/10.5281/zenodo.21021751>.
 
 ## Responsible use and license
 
